@@ -55,6 +55,18 @@ public class SlotTests
 		losingRow.Cells[1].Symbol = TestUtil.Symbols[0];
 		losingRow.Cells[2].Symbol = TestUtil.Symbols[1];
 		Assert.False(losingRow.IsWinningRow());
+
+		// Checking when wildcard (*) comes first in a winning row
+		var wildcardRow = new Row(3);
+		wildcardRow.Cells[0].Symbol = TestUtil.Symbols[3];
+		wildcardRow.Cells[1].Symbol = TestUtil.Symbols[0];
+		wildcardRow.Cells[2].Symbol = TestUtil.Symbols[0];
+		Assert.True(wildcardRow.IsWinningRow());
+
+		wildcardRow.Cells[0].Symbol = TestUtil.Symbols[3];
+		wildcardRow.Cells[1].Symbol = TestUtil.Symbols[3];
+		wildcardRow.Cells[2].Symbol = TestUtil.Symbols[3];
+		Assert.True(wildcardRow.IsWinningRow());
 	}
 
 	[Fact]
