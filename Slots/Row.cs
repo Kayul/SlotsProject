@@ -14,9 +14,15 @@ public class Row(int length = 3)
 
 	public bool IsWinningRow()
 	{
-		string firstSymbol = Cells[0].Symbol.DisplayText;
+		string? firstSymbol = Cells.FirstOrDefault(cell => cell.Symbol.DisplayText != "*")?.Symbol.DisplayText;
+		
+		if (firstSymbol == null)
+		{
+			return true;
+		}
+
 		return Cells.All(cell => cell.Symbol.DisplayText == "*" || cell.Symbol.DisplayText == firstSymbol);
-	} 
+	}
 	
 	public override string ToString() => string.Join("", Cells.Select(cell => cell.ToString()));
 }
